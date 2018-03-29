@@ -9,14 +9,28 @@
 import Foundation
 
 //A function to read user input
-func getInput() -> Any{
-    let input : Any! = readLine()
+func getInput() -> String{
+    let input : String! = readLine()
     return input!;
 }
 
 //Reworked from code on https://www.hackingwithswift.com/example-code/strings/how-to-split-a-string-into-an-array-componentsseparatedby
 let str = getInput()
 var characters  = str.components(separatedBy: " ")
+
+var tokens: [Any] = []
+for character in characters {
+    if let num = Int(character) {
+        tokens.append(num)
+    }
+    else if let op = Operator(character) {
+        tokens.append(op)
+    }
+    else {
+        print("Invalid input: '\(character)' is neither a number or supported operator")
+        exit(1)
+    }
+}
 
 /*var tokens: [Any] = characters
 let i = 2
@@ -32,8 +46,8 @@ characters = left_half + right_half
 //}
 
 //Work out what operations to perform
-for character in characters {
-    switch character {
+for operators in tokens {
+    switch operators {
         case "+":
             let total: Int! = add()
             print(total)
