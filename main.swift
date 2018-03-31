@@ -29,7 +29,22 @@ for arg in args {
     }
 }
 
-
+/*
+for token in tokens {
+    if let num = token as? Int {
+        //process
+    }
+    else if let op = token as? Operator {
+        switch op {
+            case "+":
+                print("")
+        default:
+                print("Default")
+            
+        }
+    }
+}
+ */
 
 
 
