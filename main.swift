@@ -14,18 +14,23 @@ args.removeFirst() // remove the name of the program
 print(Int(args[0])!)
 
 var tokens: [Any] = []
-for operators in tokens {
-    if let num = operators as? Int {
+for arg in args {
+    if let num = Int(arg) {
         tokens.append(num)
+        print(num) //debug line
     }
-    else if let op = operators as? Operator {
+    else if let op = supportedOperators[arg] {
         tokens.append(op)
+        
     }
     else {
-        print("Invalid input: '\(operators)' is neither a number or supported operator")
+        print("Invalid input: '\(arg)' is neither a number or supported operator")
         exit(1)
     }
 }
+
+
+
 
 
 
