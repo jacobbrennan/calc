@@ -10,15 +10,15 @@ import Foundation
 
 // code found at https://medium.com/@ranleung/stacks-10785239540b
 class Stack {
-    var stackArray = [String] ()
+    var stackArray = [Any] ()
     
     // create push function
-    func push(stringToPush : String) {
+    func push(stringToPush : Any) {
         self.stackArray.append(stringToPush)
     }
     
     // create pop function
-    func pop() -> String? {
+    func pop() -> Any? {
         if self.stackArray.last != nil {
             let stringToReturn = self.stackArray.last
             self.stackArray.removeLast()

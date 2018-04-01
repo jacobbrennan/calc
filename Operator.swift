@@ -25,7 +25,6 @@ class Operator {
     }
 }
 
-
 func add(num1: Int, num2: Int) -> (Int) {
     let total = num1 + num2
     return total
