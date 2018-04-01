@@ -12,12 +12,12 @@ import Foundation
 class Stack {
     var stackArray = [Any] ()
     
-    // create push function
+    // create push function, adds to top of stack
     func push(stringToPush : Any) {
         self.stackArray.append(stringToPush)
     }
     
-    // create pop function
+    // create pop function, removes top of stack
     func pop() -> Any? {
         if self.stackArray.last != nil {
             let stringToReturn = self.stackArray.last

@@ -8,10 +8,11 @@
 
 import Foundation
 
-class Operator {
+// Code provided by Jesse Clark via UTSOnline
+struct Operator {
     let name: String
     var precedence: Int
-    //let operate: (Int, Int) -> Int
+    let operate: (Int, Int) -> Int
     
     //init(name: String, precedence: Int, operate: (Int, Int) -> (Int)) {
     //    self.name = name
@@ -19,42 +20,35 @@ class Operator {
         //self.operate(Int, Int) = operate(Int, Int)
     //}
     
-    init(name: String, precedence: Int) {
-        self.name = name
-        self.precedence = precedence
-    }
 }
 
+// Add Function
 func add(num1: Int, num2: Int) -> (Int) {
     let total = num1 + num2
     return total
 }
+// Subtraction Function
 func sub(num1: Int, num2: Int) -> (Int) {
     let total = num1 - num2
     return total
 }
+// Multiplication Function
 func multiply(num1: Int, num2: Int) -> (Int) {
     let total = num1 * num2
     return total
 }
+// Divide Function
 func divide(num1: Int, num2: Int) -> (Int){
     let total = num1 / num2
     return total
 }
+// Modulus Function
 func modulus(num1: Int, num2: Int) -> (Int) {
     let total = num1 % num2
     return total
 }
 
-let supportedOperators: [String:Operator] = [
-    "+":Operator(name:"+", precedence:10),
-    "-":Operator(name:"-", precedence:10),
-    "x":Operator(name:"x", precedence:20),
-    "/":Operator(name:"/", precedence:20),
-    "%":Operator(name:"%", precedence:20)
-]
-
-/*
+// Look-up table of supported operators, template provided by Jesse Clark
 let supportedOperators: [String:Operator] = [
     "+":Operator(name:"+", precedence:10, operate:add),
     "-":Operator(name:"-", precedence:10, operate:sub),
@@ -62,9 +56,26 @@ let supportedOperators: [String:Operator] = [
     "/":Operator(name:"/", precedence:20, operate:divide),
     "%":Operator(name:"%", precedence:20, operate:modulus)
 ]
-*/
 
-
+/*
 func operate(num1: Int, num2: Int) {
-
+    switch supportedOperators {
+    case add:
+        let total = add(num1: Int, num2: Int)
+        return total
+    case sub:
+        let total = sub(num1: Int, num2: Int)
+        return total
+    }
 }
+ */
+
+
+
+
+
+
+
+
+
+

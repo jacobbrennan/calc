@@ -3,7 +3,7 @@
 //  calc
 //
 //  Created by Jesse Clark on 12/3/18.
-//  Added to by Jacob Brennan
+//  Written to by Jacob Brennan
 //  Copyright © 2018 UTS. All rights reserved.
 //
 
@@ -18,18 +18,19 @@ extension FileHandle : TextOutputStream {
     }
 }
 
+// Reads input
 var args = ProcessInfo.processInfo.arguments
 args.removeFirst() // remove the name of the program
 print(Int(args[0])!)
 
+// Creates array of values by type (Int or Operator)
 var tokens: [Any] = []
-let operators: [String] = ["+", "-", "x", "/", "%"]
 for arg in args {
     if let num = Int(arg) {
         tokens.append(num)
     }
-    else if operators.contains(arg) {
-        tokens.append(arg)
+    else if let op = supportedOperators [arg] {
+        tokens.append(op)
     }
     else {
         print("Invalid input: \(arg) is not an operator or a number",to:&standardError)
@@ -37,38 +38,55 @@ for arg in args {
     }
 }
 
+// Converts infix notation to postfix notation
 var operatorStack = Stack()
 var numArray: [Int] = []
 for token in tokens {
     if let num = token as? Int {
         numArray.append(num)
     }
-    else if let op: String = token as? String {
-            operatorStack.push(op) //missing argument label "stringToPush" in call
+    else if let op: Operator = token as? Operator {
+        operatorStack.push(stringToPush: op)
     }
 }
 
+// Shunting Yard algorithm
+var postFixArray: [Any] = [numArray, operatorStack] //combines the numbers + operators
 
-var postFixArray: [Any] = [numArray, operatorStack]
-var postFixStack = Stack()
+var postFixStack = Stack() // creates the stack to use for SYA
 for values in postFixArray {
     if let num = values as? Int {
-        postFixStack.push(num) //missing argument label "stringToPush" in call
+        postFixStack.push(stringToPush: num)
     }
-    else if operators.contains(values) { //Cannot convert value of type Any to expected argument type 'Int'
-        let num1: Int = postFixStack.pop() //Cannot convert value of type 'Any?' to specified type Int
-        let num2: Int = postFixStack.pop() //Cannot convert value of type 'Any?' to specified type Int
-        switch operators{
-        case "+": //expression pattern of type String cannot match values of type [String]
-            let total:Int = add(num1, num2) //missing argument label "num1, num2" in call
-            return total // return invalid outside of a function
+    else if let oper = values as? Operator {
+        let num1: Int = postFixStack.pop() as! Int
+        let num2: Int = postFixStack.pop() as! Int
+        switch oper{
+        case .add: //Pattern cannot match values of type 'Operator'
+            let result = oper.operate(num1, num2)
+            //let total:Int = add(num1: num1, num2: num2)
+            print(result)
+        case .sub:
+            let result = oper.operate(num1, num2)
+            //let total: Int = sub(num1: num1, num2: num2)
+            print(result)
+        case .multiply:
+            let result = oper.operate(num1, num2)
+            //let total: Int = multiply(num1: num1, num2: num2)
+            print(result)
+        case .divide:
+            let result = oper.operate(num1, num2)
+            //let total: Int = divide(num1: num1, num2: num2)
+            print(result)
+        case .modulus:
+            let result = oper.operate(num1, num2)
+            //let total: Int = modulus(num1: num1, num2: num2)
+            print(result)
         default:
             print("")
         }
     }
 }
-
-
 
 
 
