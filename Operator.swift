@@ -15,19 +15,34 @@ class Operator {
     
     init(name: String, precedence: Int, operate: (Int, Int) -> (Int)) {
         self.name = name
-        self.precedence = 0
-        self.operate = (num1: Int, num2: Int) -> (Int)
+        self.precedence = precedence
+        self.operate(Int, Int) = operate(Int, Int)
     }
 }
 
 
-func add(num1: Int, num2: Int) -> (Int) { }
-func sub(num1: Int, num2: Int) -> (Int) { }
-func multiply(num1: Int, num2: Int) -> (Int) { }
-func divide(num1: Int, num2: Int) -> (Int){ }
-func modulus(num1: Int, num2: Int) -> (Int) { }
+func add(num1: Int, num2: Int) -> (Int) {
+    let total = num1 + num2
+    return total
+}
+func sub(num1: Int, num2: Int) -> (Int) {
+    let total = num1 - num2
+    return total
+}
+func multiply(num1: Int, num2: Int) -> (Int) {
+    let total = num1 * num2
+    return total
+}
+func divide(num1: Int, num2: Int) -> (Int){
+    let total = num1 / num2
+    return total
+}
+func modulus(num1: Int, num2: Int) -> (Int) {
+    let total = num1 % num2
+    return total
+}
 
-
+ 
 let supportedOperators: [String:Operator] = [
     "+":Operator(name:"+", precedence:10, operate:add),
     "-":Operator(name:"-", precedence:10, operate:sub),
@@ -38,6 +53,6 @@ let supportedOperators: [String:Operator] = [
 
 
 
-//func operate(num1: Int, num2: Int) {
-//
-//}
+func operate(num1: Int, num2: Int) {
+
+}

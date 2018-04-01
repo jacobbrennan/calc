@@ -13,15 +13,12 @@ var args = ProcessInfo.processInfo.arguments
 args.removeFirst() // remove the name of the program
 print(Int(args[0])!)
 
-var tokens: [Any] = []
-for arg in args {
+let tokens = args.map { (arg:String) -> Any in
     if let num = Int(arg) {
-        tokens.append(num)
-        print(num) //debug line
+        return num
     }
     else if let op = supportedOperators[arg] {
-        tokens.append(op)
-        
+        return op
     }
     else {
         print("Invalid input: '\(arg)' is neither a number or supported operator")
