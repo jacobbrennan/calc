@@ -14,12 +14,6 @@ struct Operator {
     var precedence: Int
     let operate: (Int, Int) -> Int
     
-    //init(name: String, precedence: Int, operate: (Int, Int) -> (Int)) {
-    //    self.name = name
-    //    self.precedence = precedence
-        //self.operate(Int, Int) = operate(Int, Int)
-    //}
-    
 }
 
 // Add Function
@@ -29,7 +23,7 @@ func add(num1: Int, num2: Int) -> (Int) {
 }
 // Subtraction Function
 func sub(num1: Int, num2: Int) -> (Int) {
-    let total = num1 - num2
+    let total = (num1 - num2) * -1
     return total
 }
 // Multiplication Function
@@ -39,8 +33,15 @@ func multiply(num1: Int, num2: Int) -> (Int) {
 }
 // Divide Function
 func divide(num1: Int, num2: Int) -> (Int){
-    let total = num1 / num2
-    return total
+    if num2 == 0 {
+        print("Cannot divide by 0 - Mathematical Error")
+        exit(2)
+    }
+    else {
+        let total = num1/num2
+        return total
+    }
+    
 }
 // Modulus Function
 func modulus(num1: Int, num2: Int) -> (Int) {

@@ -26,7 +26,7 @@ args.removeFirst() // remove the name of the program
 // Creates array of values by type (Int or Operator)
 var tokens: [Any] = []
 for arg in args {
-    if args.count == 2 {
+    if args.count == 2 { //Checks that there is a full expression, not just 33 - 
         print("Unable to calculate expression")
         exit(1)
     }
@@ -42,7 +42,7 @@ for arg in args {
     }
 }
 
-// Converts infix notation to postfix notation
+// Converts infix notation to postfix notation, from https://github.com/raywenderlich/swift-algorithm-club
 var operatorStack = Stack()
 var numArray: [Int] = []
 for token in tokens {
@@ -54,8 +54,8 @@ for token in tokens {
     }
 }
 
-// Shunting Yard algorithm
-var postFixArray: [Any] = [numArray, operatorStack] //combines the numbers + operators
+// Shunting Yard algorithm, from https://github.com/raywenderlich/swift-algorithm-club
+var postFixArray: [Any] = numArray + operatorStack.stackArray //combines the numbers + operators
 
 var postFixStack = Stack() // creates the stack to use for SYA
 for values in postFixArray {
