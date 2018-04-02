@@ -21,7 +21,9 @@ extension FileHandle : TextOutputStream {
 // Reads input
 var args = ProcessInfo.processInfo.arguments
 args.removeFirst() // remove the name of the program
-//print(Int(args[0])!)
+if args.count == 1 {
+    print(Int(args[0])!)
+}
 
 // Creates array of values by type (Int or Operator)
 var tokens: [Any] = []
@@ -50,7 +52,7 @@ for token in tokens {
         numArray.append(num)
     }
     else if let op: Operator = token as? Operator {
-        operatorStack.push(stringToPush: op)
+        operatorStack.push(valueToPush: op)
     }
 }
 
@@ -60,12 +62,16 @@ var postFixArray: [Any] = numArray + operatorStack.stackArray //combines the num
 var postFixStack = Stack() // creates the stack to use for SYA
 for values in postFixArray {
     if let num = values as? Int {
-        postFixStack.push(stringToPush: num)
+        postFixStack.push(valueToPush: num)
     }
     else if let oper = values as? Operator {
         let num1: Int = postFixStack.pop() as! Int
         let num2: Int = postFixStack.pop() as! Int
         let total = oper.operate(num1, num2)
-        print(total)
+        postFixStack.push(valueToPush: total)
+        
+        if postFixStack.count == 1 {
+            print(total)
+        }
     }
 }

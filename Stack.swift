@@ -12,17 +12,22 @@ import Foundation
 class Stack {
     var stackArray = [Any] ()
     
+    // returns count of how many values in stack
+    var count: Int {
+        return stackArray.count
+    }
+    
     // create push function, adds to top of stack
-    func push(stringToPush : Any) {
-        self.stackArray.append(stringToPush)
+    func push(valueToPush : Any) {
+        self.stackArray.append(valueToPush)
     }
     
     // create pop function, removes top of stack
     func pop() -> Any? {
         if self.stackArray.last != nil {
-            let stringToReturn = self.stackArray.last
+            let valueToReturn = self.stackArray.last
             self.stackArray.removeLast()
-            return stringToReturn
+            return valueToReturn
         }
         else {
             return nil

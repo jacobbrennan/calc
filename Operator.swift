@@ -18,8 +18,7 @@ struct Operator {
 
 // Add Function
 func add(num1: Int, num2: Int) -> (Int) {
-    let total = num1 + num2
-    return total
+    return num1 + num2
 }
 // Subtraction Function
 func sub(num1: Int, num2: Int) -> (Int) {
