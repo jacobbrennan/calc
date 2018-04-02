@@ -57,18 +57,6 @@ let supportedOperators: [String:Operator] = [
     "%":Operator(name:"%", precedence:20, operate:modulus)
 ]
 
-/*
-func operate(num1: Int, num2: Int) {
-    switch supportedOperators {
-    case add:
-        let total = add(num1: Int, num2: Int)
-        return total
-    case sub:
-        let total = sub(num1: Int, num2: Int)
-        return total
-    }
-}
- */
 
 
 

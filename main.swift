@@ -21,11 +21,15 @@ extension FileHandle : TextOutputStream {
 // Reads input
 var args = ProcessInfo.processInfo.arguments
 args.removeFirst() // remove the name of the program
-print(Int(args[0])!)
+//print(Int(args[0])!)
 
 // Creates array of values by type (Int or Operator)
 var tokens: [Any] = []
 for arg in args {
+    if args.count == 2 {
+        print("Unable to calculate expression")
+        exit(1)
+    }
     if let num = Int(arg) {
         tokens.append(num)
     }
@@ -61,33 +65,7 @@ for values in postFixArray {
     else if let oper = values as? Operator {
         let num1: Int = postFixStack.pop() as! Int
         let num2: Int = postFixStack.pop() as! Int
-        switch oper{
-        case .add: //Pattern cannot match values of type 'Operator'
-            let result = oper.operate(num1, num2)
-            //let total:Int = add(num1: num1, num2: num2)
-            print(result)
-        case .sub:
-            let result = oper.operate(num1, num2)
-            //let total: Int = sub(num1: num1, num2: num2)
-            print(result)
-        case .multiply:
-            let result = oper.operate(num1, num2)
-            //let total: Int = multiply(num1: num1, num2: num2)
-            print(result)
-        case .divide:
-            let result = oper.operate(num1, num2)
-            //let total: Int = divide(num1: num1, num2: num2)
-            print(result)
-        case .modulus:
-            let result = oper.operate(num1, num2)
-            //let total: Int = modulus(num1: num1, num2: num2)
-            print(result)
-        default:
-            print("")
-        }
+        let total = oper.operate(num1, num2)
+        print(total)
     }
 }
-
-
-
-
